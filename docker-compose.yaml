@@ -1,0 +1,21 @@
+version: '3.1'
+services:
+    nginx:
+        image: nginx
+        container_name: flask_nginx
+        restart: always
+        ports:
+                - 80:80
+    db:
+        image: mysql:5.7
+        restart: always
+        container_name: flask_db
+        ports:
+                - "3307:3306"
+        expose:
+                - "3307"
+        environment:
+                - MYSQL_USER=user
+                - MYSQL_PASSWORD=user123
+                - MYSQL_DATABASE=flask_api
+                - MYSQL_ROOT_PASSWORD=12345678
