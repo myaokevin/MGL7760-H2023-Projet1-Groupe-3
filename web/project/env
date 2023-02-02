@@ -1,0 +1,6 @@
+FLASK_APP=app.py
+FLASK_DEBUG=1
+DATABASE_URL=mysql://user:user1234@db:3307/flask_api
+SQL_HOST=db
+SQL_PORT=3307
+DATABASE=mysql

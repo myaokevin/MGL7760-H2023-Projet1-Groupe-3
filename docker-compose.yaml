@@ -1,11 +1,23 @@
-version: '3.1'
+version: '3.9'
 services:
+    wsgi:
+        image: python:3.10.7-slim-buster
+        container_name: flask_wsgi
+        restart: always
+        ports:
+                - 5002:5000
+
+
     nginx:
         image: nginx
         container_name: flask_nginx
         restart: always
         ports:
                 - 80:80
+        volumes:
+                - './web:/usr/share/nginx/html'
+
+    
     db:
         image: mysql:5.7
         restart: always
@@ -19,3 +31,8 @@ services:
                 - MYSQL_PASSWORD=user123
                 - MYSQL_DATABASE=flask_api
                 - MYSQL_ROOT_PASSWORD=12345678
+
+    cache:
+        image: redis
+        restart: always
+        container_name: flask_cache
