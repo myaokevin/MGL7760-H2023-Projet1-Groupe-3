@@ -6,7 +6,7 @@ from sqlalchemy.sql import func
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://user:user1234@0.0.0.0:3307/flask_api"
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://user:user1234@db:3307/flask_api"
 db = SQLAlchemy(app)
 
 class Livres(db.Model):
@@ -28,4 +28,7 @@ class Livres(db.Model):
 @app.route("/")
 def hello_world():
     return jsonify(hello="world")
+
+
+
 

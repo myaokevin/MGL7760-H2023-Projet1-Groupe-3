@@ -1,11 +1,16 @@
 version: '3.9'
 services:
     wsgi:
-        image: python:3.10.7-slim-buster
+        build: ./
         container_name: flask_wsgi
         restart: always
+        links:
+                - db
         ports:
-                - 5002:5000
+                - 5000:5000
+        volumes:
+                - './web/project:/usr/src/app'
+        command: gunicorn -w 1 -b 0.0.0.0:5000 app:app
 
 
     nginx:
@@ -16,7 +21,6 @@ services:
                 - 80:80
         volumes:
                 - './web:/usr/share/nginx/html'
-
     
     db:
         image: mysql:5.7
@@ -31,6 +35,8 @@ services:
                 - MYSQL_PASSWORD=user123
                 - MYSQL_DATABASE=flask_api
                 - MYSQL_ROOT_PASSWORD=12345678
+        volumes:
+                - ./db:/docker-entrypoint-initdb.d/:ro
 
     cache:
         image: redis
