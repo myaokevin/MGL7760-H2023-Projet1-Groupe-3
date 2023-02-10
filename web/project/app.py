@@ -1,12 +1,13 @@
 import os
 from flask import Flask, render_template, request, url_for, redirect,jsonify
+from flask_caching import Cache
 from flask_sqlalchemy import SQLAlchemy
-
 from sqlalchemy.sql import func
 
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://user:user1234@db:3307/flask_api"
+cache = Cache(app, config={'CACHE_TYPE': 'redis', 'CACHE_REDIS_URL': 'redis://cache:6379/0'})
+app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+mysqlconnector://user:user123@db:3306/flask_api"
 db = SQLAlchemy(app)
 
 class Livres(db.Model):
@@ -24,10 +25,21 @@ class Livres(db.Model):
 
     def __repr__(self, titre):
         self.titre = titre
+with app.app_context():
+    db.create_all()
+
+    # db.session.add(User('admin', 'admin@example.com'))
+    # db.session.add(User('guest', 'guest@example.com'))
+    # db.session.commit()
+
+    # users = User.query.all()
+    # print(users)
 
 @app.route("/")
+@cache.cached(timeout=30, query_string=True)
 def hello_world():
-    return jsonify(hello="world")
+    livres = Livres.query.all()
+    return jsonify(livres)
 
 
 

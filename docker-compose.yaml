@@ -4,14 +4,19 @@ services:
         build: ./
         container_name: flask_wsgi
         restart: always
+        environment: 
+                - FLASK_APP=app
+                - FLASK_DEBUG=1
         links:
                 - db
+                - cache
         ports:
                 - 5000:5000
         volumes:
-                - './web/project:/usr/src/app'
-        command: gunicorn -w 1 -b 0.0.0.0:5000 app:app
+                - './web/project:/app'
+ #       command: gunicorn -w 1 -b 0.0.0.0:5000 app:app flask run
 
+        command: flask run --host=0.0.0.0 --port=5000
 
     nginx:
         image: nginx
