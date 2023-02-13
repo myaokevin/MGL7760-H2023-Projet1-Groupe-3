@@ -175,8 +175,36 @@ def hello_world():
 #     livres = Livres.query.all()
 #     return render_template ('biblio.html', livres=livres)
 
+# filtrer par catégorie
+#@app.route('/biblio/category')
+# def filtre():
+#     category_id = request.args.get('Categorie.id')
+#     if category_id:
+#         livres = Livres.query.filter_by(category_id=category_id).all()
+#     else:
+#         livres = Livres.query.all()
+#     categories = Categorie.query.all()
+#     return render_template('biblio.html', livres=livres, categories=categories)
 
-#@app.route('/biblio/<int:id>')
-#def afficher_details(id): #afficher details pour livre choisi
- #   livre = Livres.query.get(id)
 
+# #afficher details pour livre choisi
+# @app.route('/biblio/<int:id>')
+# def afficher_details(id): 
+#     livre = Livres.query.get(id)
+#     return render_template('detail.html', livre=livre)
+
+# #recherche de livres par titre
+# @app.route('/biblio/search', methods=['GET'])
+# def filtre_recherche():
+#     search_query = request.args.get('rech')
+#     books = Livres.query.filter(Livres.title.like('%' + search_query +'%')).all()
+#     return render_template('biblio.html', books=books)
+
+# #recherche des livres par auteur
+# @app.route('/auteur/<author>')
+# def author_search(author):
+#     books = Livres.query.filter_by(author=author).all()
+#     return render_template('auteur_livres.html', books=books)
+#
+if __name__ == __main__:
+    app.run(debug=True)

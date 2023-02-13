@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title> Bibliothèque</title>
+        <style>
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            }
+            th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            }
+            th {
+            background-color: lightgray;
+
+            }
+        </style>
+    </head>
+    <body>
+        <form action='/biblio/search' method='get'><!--formulaire de recherche de livre par titre-->
+        <input type='text' name='rech'>
+        <button type='submit'>Rechercher</button>
+        </form>
+        <form action='/author' method='get'><!--formulaire de recherche de livre par auteur-->
+            <input type='text' name='author' placeholder='Entrer auteur'>
+            <input type='submit' value='Search'>
+        </form>
+        <h1>Livres</h1>
+        <table> <!--tableau qui affiche la liste des livres et leurs informations-->
+            <tr>
+                <th>Titre</th>
+                <th>ISBN</th>
+                <th>Année</th>
+                <th>description</th>
+                <th>Auteur</th>
+                <th>Editeur</th>
+                <th>Categorie</th>
+            </tr>
+            {% for livres in Livres %}
+            <tr>
+                <td>{{ livres.titre }}</td>
+                <td>{{ livres.isbn }}</td>
+                <td>{{ livres.annee_apparition }}</td>
+                <td>{{ livres.description }}</td>
+                <td>{{ livres.Auteur.nom }}</td>
+                <td>{{ livres.Editeur.nom }}</td> 
+                <td>{{ livres.categorie }}</td>
+                <td><button onclick="window.location.href='detail.html';">Voir détails</button></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        
+    </body>
+</html>
