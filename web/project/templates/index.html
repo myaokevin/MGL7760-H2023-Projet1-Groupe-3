@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <h1 class="title">{% block title %} Livres {% endblock %}</h1>
+    <div class="content">
+        {% for livre in livres %}
+            <div class="student">
+                <p><b>#{{ livre.id }}</b></p>
+                <b>
+                    <p class="name">{{ livre.titre }} {{ livre.description }}</p>
+                </b>
+                <p>{{ livre.auteur }}</p>
+                <p>{{ livre.categorie }}</p>
+                <p>Ajouté le : {{ livre.date_creation }}</p>
+                <div class="bio">
+                    <h4>Description</h4>
+                    <p>{{ livre.bio }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

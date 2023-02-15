@@ -1,49 +1,103 @@
-version: '3.9'
+version: '3'
 services:
-    wsgi:
-        build: ./
-        container_name: flask_wsgi
-        restart: always
-        environment: 
-                - FLASK_APP=app
-                - FLASK_DEBUG=1
-        links:
-                - db
-                - cache
-        ports:
-                - 5000:5000
-        volumes:
-                - './web/project:/app'
- #       command: gunicorn -w 1 -b 0.0.0.0:5000 app:app flask run
+        wsgi:
+                build: ./
+                restart: always
+                environment:
+                        - FLASK_APP=app
+                        - FLASK_DEBUG=1
+                deploy:
+                        mode: replicated
+                        replicas: 1
+                links:
+                        - db
+                        - cache
+                expose:
+                        - '5001'
+                ports:
+                        - '5001:5001'
+                volumes:
+                        - './web/project:/app'
+                command: gunicorn -w 1 -b 0.0.0.0:5001 app:app 
+                # command: flask run --host=0.0.0.0
+                depends_on:
+                        - db
 
-        command: flask run --host=0.0.0.0 --port=5000
+        wsgi1:
+                build: ./
+                restart: always
+                environment:
+                        - FLASK_APP=app
+                        - FLASK_DEBUG=1
+                deploy:
+                        mode: replicated
+                        replicas: 1
+                links:
+                        - db
+                        - cache
+                expose:
+                        - '5002'
+                ports:
+                        - '5002:5002'
+                volumes:
+                        - './web/project:/app'
+                command: gunicorn -w 1 -b 0.0.0.0:5002 app:app 
+                # command: flask run --host=0.0.0.0
+                depends_on:
+                        - db
+                
+        wsgi2:
+                build: ./
+                restart: always
+                environment:
+                        - FLASK_APP=app
+                        - FLASK_DEBUG=1
+                deploy:
+                        mode: replicated
+                        replicas: 1
+                links:
+                        - db
+                        - cache
+                expose:
+                        - '5003'
+                ports:
+                        - '5003:5003'
+                volumes:
+                        - './web/project:/app'
+                command: gunicorn -w 1 -b 0.0.0.0:5003 app:app 
+                # command: flask run --host=0.0.0.0
+                depends_on:
+                        - db
+        server:
+                build: ./nginx
+                restart: always
+                ports:
+                        - '80:80'
+                volumes:
+                        - './web:/usr/share/nginx/html'
+                        - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+                depends_on:
+                        - wsgi
+                        - wsgi1
+                        - wsgi2
 
-    nginx:
-        image: nginx
-        container_name: flask_nginx
-        restart: always
-        ports:
-                - 80:80
-        volumes:
-                - './web:/usr/share/nginx/html'
-    
-    db:
-        image: mysql:5.7
-        restart: always
-        container_name: flask_db
-        ports:
-                - "3307:3306"
-        expose:
-                - "3307"
-        environment:
-                - MYSQL_USER=user
-                - MYSQL_PASSWORD=user123
-                - MYSQL_DATABASE=flask_api
-                - MYSQL_ROOT_PASSWORD=12345678
-        volumes:
-                - ./db:/docker-entrypoint-initdb.d/:ro
+        db:
+                image: mysql:5.7
+                restart: always
+                container_name: mysql
+                ports:
+                        - '3307:3306'
+                expose:
+                        - "3307"
+                environment:
+                        - MYSQL_USER=user
+                        - MYSQL_PASSWORD=user123
+                        - MYSQL_DATABASE=flask_api
+                        - MYSQL_ROOT_PASSWORD=12345678
+                volumes:
+                        - ./db:/docker-entrypoint-initdb.d/:ro
 
-    cache:
-        image: redis
-        restart: always
-        container_name: flask_cache
+        cache:
+                image: redis
+                restart: always
+                container_name: flask_cache
