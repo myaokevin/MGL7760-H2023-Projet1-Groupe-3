@@ -69,7 +69,7 @@ services:
                 depends_on:
                         - db
         server:
-                build: ./nginx
+                build: nginx
                 restart: always
                 ports:
                         - '80:80'
