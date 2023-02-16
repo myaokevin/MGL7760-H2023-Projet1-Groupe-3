@@ -30,6 +30,20 @@ class Livres(db.Model):
     def __repr__(self):
          return f'<Livres {self.titre}>'
 
+class Auteur(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(128), nullable=False)
+
+class Editeur(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    nom = db.Column(db.String(128), nullable=False)
+
+class Categorie(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    code = db.Column(db.String(128), nullable=False)
+    nom = db.Column(db.String(128), nullable=False)
+    
+
 with app.app_context():
     db.create_all()
     db.session.add(Livres(titre='L’informatique répartie sous Unix',

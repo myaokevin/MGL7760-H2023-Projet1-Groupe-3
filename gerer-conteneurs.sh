@@ -1,48 +1,21 @@
+#!/bin/bash
 
-# **************************************************************************
-# -
-# Devoir 1
-# ===========================================================================
-# ===========================================================================
-# YAO KEVIN AMOUZOU
-# -
-# ===========================================================================
-# ===========================================================================
-# 
-# ===========================================================================
-
-SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-
-prefix_cmd() {
-    local PREF="${1//\//\\/}" # replace / with \/
-    shift
-    local CMD=("$@")
-    "${CMD[@]}" 1> >(sed "s/^/${PREF}/") 2> >(sed "s/^/${PREF}/" 1>&2)
+if [[ "$1" == "Start" ]];
+then 
+bash ./db/import.sh &
+docker-compose up -d
+dwn(){
+    docker rm -f $(docker ps -a -q)
+    docker volume rm $(docker volume ls -q)
+}
+dall(){
+    docker rm -f $(docker ps -a -q)
+    docker volume rm $(docker volume ls -q)
 }
 
-ctrl_c() {
-    echo "===> Shutting down services"
+if [[ "$1" == "Stop" ]];  
+then dwn()
 
-    echo "===> Shutting down mysql"
-    kill "$mysql_pid"
-
-    echo "===> Shutting down wsgi"
-    kill "$wsgi_pid"
-}
-
-echo "===> Creating docker network"
-docker network create db
-
-echo "===> Starting mysql"
-prefix_cmd "mysql: " "$SCRIPT_DIR/run_feed_db.sh" &
-postgresql_pid=$!
-
-echo "===> Starting minio"
-prefix_cmd "wsgi: " "$SCRIPT_DIR/run_wsgi.sh" &
-minio_pid=$!
-
-trap ctrl_c INT
-
-wait $mysql_pid $wsgi_pid
-
-echo "===> All services stopped"
+if [[ "$1" == "DALL" ]];  
+then dall()
+fi
