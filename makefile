@@ -9,7 +9,8 @@ lint:
 
 # Cible pour exécuter les tests unitaires avec unittest
 unittest:
-	PYTHONPATH=$(PYTHONPATH) python -m unittest discover -s tests -p "*_test.py"
+	PYTHONPATH=$(PYTHONPATH) python -m unittest discover -s testunit -p "*.py"
+	python -m unittest discover -s testunit -p "*.py" -v
 
 # Cible pour générer la documentation avec pdoc
 docs:
@@ -17,8 +18,9 @@ docs:
 
 # Cible pour vérifier la couverture du code avec coverage
 coverage:
-	coverage run --source=$(APP_NAME) -m unittest discover -s tests -p "*_test.py"
+	coverage run --source=$(APP_NAME) -m unittest discover -s testunit -p "*.py"
 	coverage report -m
 
 # exécute toutes les tâches en une seule fois
 all: lint unittest docs coverage
+
