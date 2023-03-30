@@ -22,6 +22,8 @@ Développement
     5. Arrêter des conteneurs
 
 Rédiger un rapport de synthèse
+Rédiger un rapport de synthèse
+
 
 Nombre de pages : ≈ 20 pages (à titre indicatif)
 - Expliquez votre démarche pour la création de l'environnement de développement avec
