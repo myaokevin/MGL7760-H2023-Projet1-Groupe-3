@@ -12,7 +12,7 @@ unittest:
 	PYTHONPATH=$(PYTHONPATH) python -m unittest discover -s testunit -p "*.py"
 	python -m unittest discover -s testunit -p "*.py" -v
 
-# Cible pour générer la documentation avec pdoc
+# Cible pour générer la documentation avec pdoc. Cela générera une documentation HTML dans le dossier "docs" du projet.
 docs:
 	pdoc --html --force --output-dir=docs $(APP_NAME)
 
