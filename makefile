@@ -24,3 +24,4 @@ coverage:
 # exécute toutes les tâches en une seule fois
 all: lint unittest docs coverage
 
+#---------------------------------------------------------------
