@@ -1,0 +1,8 @@
+apiVersion: v2
+name: employees-nginx
+version: 1.0.0
+sources:
+  - https://github.com/boulgoudan/employees
+maintainers:
+  - name: Moustapha Boulgoudan
+    email: moustapha.boulgoudan@gmail.com

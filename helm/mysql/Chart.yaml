@@ -1,0 +1,4 @@
+name: employees-mysql
+sources:
+- https://github.com/boulgoudan/employees
+version: 1.0.0
