@@ -1,0 +1,14 @@
+environment: development
+container:
+  name: employees-nginx
+  port: 80
+  image: nginx
+  tag: latest
+replicas: 1
+pvc:
+  name: app-persistent-volume
+  path: /var/www/html
+  claim: pv-claim-app
+cm:
+  name: nginx-config-volume
+  path: /etc/nginx/conf.d
