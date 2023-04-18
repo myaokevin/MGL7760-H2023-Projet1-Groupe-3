@@ -19,3 +19,4 @@ then dwn()
 if [[ "$1" == "DALL" ]];  
 then dall()
 fi
+#gggggg
