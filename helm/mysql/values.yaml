@@ -1,9 +1,9 @@
-environment: production
-namespace: prd
-app: prd-employees
+environment: devops-tools
+namespace: devops-tools
+app: mysql
 replicas: 1
 container:
-  name: prd-employees-mysql
+  name: mysql
   port: 3306
   image: mysql
   tag: 5.7
@@ -14,7 +14,7 @@ container:
   podSecurityContext:
     fsGroup: 1001
 db:
-  name: prd-employees
+  name: mysql
   rootpassword: rootpassword
   user: user
   userpassword: password

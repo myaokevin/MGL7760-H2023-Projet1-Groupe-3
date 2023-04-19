@@ -1,6 +1,6 @@
 environment: development
 container:
-  name: employees-nginx
+  name: flask-nginx
   port: 80
   image: nginx
   tag: latest
