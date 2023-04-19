@@ -1,9 +1,15 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
+<style>
+    #sec1::after {
+        content: "\a";
+        white-space: pre;
+    }
+</style>
 <h1> AJOUTER UN LIVRE</h1> <br>
-<section>
+<section id="sec1">
+ 
 <form  action='' method = "POST" >
     <table>
         <tr>
@@ -21,6 +27,7 @@
         <td><input type='text' name='isbn' /></td>
 
     </tr>
+    
     <tr>
         <td>Auteur </td>
         <td><input type='text' name='auteur' /></td>
