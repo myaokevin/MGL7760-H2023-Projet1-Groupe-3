@@ -1,11 +1,10 @@
 pipeline {
     agent any
     stages {
-        stage('Hello') {
+        stage('buid') {
             steps {
                 sh 'pip --version'
-                sh 'make makefile lint'
-                sh 'make makefile docs'
+
             }
         }
 
