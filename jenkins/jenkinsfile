@@ -6,9 +6,9 @@ pipeline {
                 sh 'pip --version'
             }
         }
-        stage('analyse-statique') {
+        stage('build') {
             steps {
-                sh 'make makefile all'
+                sh 'make makefile lint'
             }
         }
     }
