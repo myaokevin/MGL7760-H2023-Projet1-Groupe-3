@@ -1,0 +1,21 @@
+pipeline {
+    agent any
+    stages {
+        stage('test pip') {
+            steps {
+                sh 'pip --version'
+            }
+        }
+        stage('test-pip') {
+            steps {
+                sh 'echo building'
+                sh 'make makefile lint'
+            }
+        }
+        post {
+            always {
+                junit 'test-reports/*.xml'
+            }
+        }
+    }
+}

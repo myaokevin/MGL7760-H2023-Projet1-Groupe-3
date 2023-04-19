@@ -2,7 +2,8 @@
 Repertoire du TP MGL7760 Groupe 3
 
 Projet 1 MGL7760 – Proposition de répartition des tâches
-
+----------------------------------------------------------
+----------------------------------------------------------
 
 Développement
 - Créer votre dépôt de code source privé sur Github
@@ -22,8 +23,10 @@ Développement
     5. Arrêter des conteneurs
 
 Rédiger un rapport de synthèse
+--------------------------------------------------------------------------------------------------------------
 
-
+--------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
 Nombre de pages : ≈ 20 pages (à titre indicatif)
 - Expliquez votre démarche pour la création de l'environnement de développement avec
 conteneurs pour les quatre (4) étapes mentionnées plus haut. (Kevin)

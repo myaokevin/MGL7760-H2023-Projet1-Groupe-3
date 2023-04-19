@@ -1,0 +1,14 @@
+FROM jenkins/jenkins:lts
+USER root
+RUN apt-get update
+RUN apt-get install -y python3-pip
+RUN pip install pylint
+RUN pip install unittest2
+RUN pip install pdoc
+RUN pip install coverage
+RUN apt-get install -y make
+RUN curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 \
+    && chmod +x get_helm.sh && ./get_helm.sh
+# Install app dependencies
+RUN pip install --upgrade pip
+USER  jenkins
