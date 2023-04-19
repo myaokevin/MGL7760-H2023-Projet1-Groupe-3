@@ -1,14 +1,20 @@
 pipeline {
     agent any
     stages {
-        stage('Hello') {
+        stage('test pip') {
             steps {
                 sh 'pip --version'
             }
         }
-        stage('build') {
+        stage('test-pip') {
             steps {
+                sh 'echo building'
                 sh 'make makefile lint'
+            }
+        }
+        post {
+            always {
+                junit 'test-reports/*.xml'
             }
         }
     }
