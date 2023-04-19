@@ -16,11 +16,6 @@ pipeline {
             steps {
                 sh 'make makefile unittest'
             }
-        }
-        stage('documentation') {
-            steps {
-                sh 'make makefile docs'
-            }
         }stage('couverture') {
             steps {
                 sh 'make makefile coverage'
