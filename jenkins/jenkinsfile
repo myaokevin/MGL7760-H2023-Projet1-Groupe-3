@@ -7,5 +7,10 @@ pipeline {
                 sh 'pip --version'
             }
         }
+        stage('analyse statique') {
+            steps {
+                sh 'make makefile lint'
+            }
+        }
     }
 }
