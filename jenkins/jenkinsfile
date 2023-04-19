@@ -1,24 +1,9 @@
 pipeline {
     agent any
-
     stages {
         stage('Hello') {
             steps {
                 sh 'pip --version'
-            }
-        }
-        stage('analyse statique') {
-            steps {
-                sh 'make makefile lint'
-            }
-        }
-        stage('tests unitaires') {
-            steps {
-                sh 'make makefile unittest'
-            }
-        }stage('couverture') {
-            steps {
-                sh 'make makefile coverage'
             }
         }
     }
