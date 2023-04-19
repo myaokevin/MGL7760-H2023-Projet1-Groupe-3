@@ -56,9 +56,27 @@ with app.app_context():
 
 @app.route("/")
 @cache.cached(timeout=30, query_string=True)
-def hello_world():
+def index():
     livres = Livres.query.all()
     return render_template('index.html', livres=livres)
+
+@app.route('/add_livre/', methods=["GET", "POST"])
+def add_livre():
+    if request.method =='GET': 
+        return render_template('add_livre.html')
+    if request.method =='POST':
+        titre = request.form['titre']
+        description = request.form['description']
+        isbn = request.form['isbn']
+        auteur = request.form['auteur']
+        editeur = request.form['editeur']
+        categorie = request.form['categorie']
+        livre = Livres(titre=titre, description=description, isbn=isbn, auteur=auteur, editeur=editeur, categorie=categorie)
+        db.session.add(livre)
+        db.session.commit()
+        return redirect(url_for('index'))
+        
+
 
 
 # @app.route("/biblio", methods=["GET", "POST"])
