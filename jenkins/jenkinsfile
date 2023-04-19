@@ -8,21 +8,7 @@ pipeline {
         }
         stage('analyse-statique') {
             steps {
-                sh 'make makefile lint'
-            }
-        }
-        stage('tests-unitaires') {
-            steps {
-                sh 'make makefile unittest'
-            }
-        }
-        stage('documentation') {
-            steps {
-                sh 'make makefile docs'
-            }
-        }stage('couverture') {
-            steps {
-                sh 'make makefile coverage'
+                sh 'make makefile all'
             }
         }
     }
