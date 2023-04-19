@@ -2,7 +2,7 @@
 Repertoire du TP MGL7760 Groupe 3
 
 Projet 1 MGL7760 – Proposition de répartition des tâches
-
+----------------------------------------------------------
 
 Développement
 - Créer votre dépôt de code source privé sur Github
