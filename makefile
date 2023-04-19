@@ -1,11 +1,12 @@
 # Variables de configuration
-APP_NAME=myapp
+APP_NAME=web/project/app.py
 PYTHONPATH=$(PWD)/$(APP_NAME)
 
 # Cible pour l'analyse statique avec Pylint : exécute Pylint pour effectuer une analyse 
 #statique du code et détecter les erreurs de style.
 lint:
-	pylint $(APP_NAME) --rcfile=.pylintrc
+#	pylint $(APP_NAME) --rcfile=.pylintrc
+	pylint $(APP_NAME) 
 
 # Cible pour exécuter les tests unitaires avec unittest
 unittest:
