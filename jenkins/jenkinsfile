@@ -4,8 +4,8 @@ pipeline {
         stage('Hello') {
             steps {
                 sh 'pip --version'
+                sh 'make makefile lint'
                 sh 'make makefile docs'
-                sh 'make makefile all'
             }
         }
 
