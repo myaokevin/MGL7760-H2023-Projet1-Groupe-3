@@ -4,8 +4,10 @@ pipeline {
         stage('Hello') {
             steps {
                 sh 'pip --version'
+                sh 'make makefile docs'
+                sh 'make makefile all'
             }
         }
-        
+
     }
 }
