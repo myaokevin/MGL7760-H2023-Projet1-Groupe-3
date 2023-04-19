@@ -17,7 +17,6 @@ def establish_connection():
         auth_plugin='mysql_native_password'
     )
     return cnx
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
