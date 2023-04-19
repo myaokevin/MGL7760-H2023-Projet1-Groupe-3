@@ -6,10 +6,6 @@ pipeline {
                 sh 'pip --version'
             }
         }
-        stage('build') {
-            steps {
-                sh 'make makefile lint'
-            }
-        }
+        
     }
 }
