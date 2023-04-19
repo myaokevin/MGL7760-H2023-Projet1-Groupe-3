@@ -16,8 +16,8 @@ services:
                         - '5000'
                 volumes:
                         - './web/project:/app'
-                command: gunicorn -w 1 -b 0.0.0.0:5000 app:app 
-                # command: flask run --host=0.0.0.0
+        #command: gunicorn -w 1 -b 0.0.0.0:5000 app:app 
+                command: flask run --host=0.0.0.0
                 depends_on:
                         - db
 

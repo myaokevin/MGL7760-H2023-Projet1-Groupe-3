@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<h1> Ajouter un Livre </h1> <br>
+<section>
+<form  action='' method = "POST" >
+    <table>
+        <tr>
+            <td>Titre</td>
+            <td><input type='text' name='titre'/></td>
+        </tr>
+        <tr>
+            <td>Description </td>
+            <td><input type='text' name='description' /></td>
+        </tr>
+
+    </tr>
+    <tr>
+        <td>ISBN </td>
+        <td><input type='text' name='isbn' /></td>
+
+    </tr>
+    <tr>
+        <td>Auteur </td>
+        <td><input type='text' name='auteur' /></td>
+
+    </tr>
+    <tr>
+        <td>Editeur </td>
+        <td><input type='text' name='editeur' /></td>
+
+    </tr>
+    <tr>
+        <td>Categorie </td>
+        <td><input type='text' name='categorie'/></td>
+    </tr>
+    </table>
+    <p><input type="submit" value = "submit"/></p>
+
+</form>
+</section>
+
+{% endblock %}

@@ -1,7 +1,20 @@
 {% extends 'main.html' %}
 
 {% block content %}
+
+<style>
+    .button1 {
+background-color: white;
+color: black;
+border: 2px solid #008CBA;
+    }
+    .button1:hover{
+        background-color: #008CBA;
+        color: white;
+    }
+</style>
     <h1 class="title">{% block title %} Livres {% endblock %}</h1>
+    <h2><button class="button button1"><a href = "/add_livre" >Ajouter un livre</a></button></h2>
     <div class="content">
         {% for livre in livres %}
             <div class="student">
